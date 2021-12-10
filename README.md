@@ -5,6 +5,10 @@ Powered By: https://openspeedtest.com/
 
 SpeedTest Website: https://thedoggybrad.github.io/speedtest
 
+The Repository is located on: https://github.com/thedoggybrad/speedtest
+
+The License Agreement with Privacy Policy is located here: https://github.com/thedoggybrad/speedtest/blob/main/License.MD
+
 It will display much better vs the Original OpenSpeedTest.
 The platform is pre-configured to display on all web browsers without any problems.
 
