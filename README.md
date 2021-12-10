@@ -3,6 +3,8 @@ The Newest Speedtest Website from the doggybrad.
 
 Powered By: https://openspeedtest.com/
 
+Note: Our Platform is now not connected to the original website, however we are just connecting to their services and components.
+
 SpeedTest Website: https://thedoggybrad.github.io/speedtest
 
 The Repository is located on: https://github.com/thedoggybrad/speedtest
