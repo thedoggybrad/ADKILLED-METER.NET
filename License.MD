@@ -1,4 +1,5 @@
 License Terms and Privacy Policy of The Doggy Brad Speed Test
+
 Lastly Update December 10, 2021 (3:28PM UTC +8)
 
 Whreas, The Doggy Brad is implementing this on this repository and on the whole https://thedoggybrad.github.io/speedtest.
