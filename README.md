@@ -17,4 +17,4 @@ My Goals is to provide an highly accurate Speed Test platform, to display Open S
 This will provide the highly accurate Speed Test because of simple UI, therefore your Web Browser will load it much faster.
 
 Project Type: Open-Source Project (but using Closed-Source Components)
-
+Funding Type: Not Applicable atleast for now
