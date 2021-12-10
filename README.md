@@ -13,3 +13,5 @@ Goals:
 2.) To display Open Speed Test on mobile much better.
 3.) To have a simple GUI vs the OpenSpeedTest.
 
+This will provide the highly accurate Speed Test because of simple UI, therefore your Web Browser will load it much faster.
+
