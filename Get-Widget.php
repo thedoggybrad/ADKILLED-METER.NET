@@ -9,6 +9,8 @@
 <link rel="dns-prefetch" href="//open.cachefly.net">
 <link rel="manifest" href="/manifest.json">
 <link rel="canonical" href="https://openspeedtest.com/Get-widget.php"/>
+<title>Speed Test - Most Accurate Online Broadband Speed Test</title>
+<meta name="description" content="The best HTML5 Internet Speed Test. No Flash or Java needed ✅The Most Accurate Online Broadband Speed Test. Work on Any Web Browser. No Plugins needed."/>
 <link href="https://open.cachefly.net/css/2020Widget.css" rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
