@@ -1,8 +1,6 @@
 # The Doggy Brad Speed Test README
 The Newest Speedtest Website from the doggybrad.
 
-Powered By: https://openspeedtest.com/
-
 SpeedTest Website: https://thedoggybrad.github.io/speedtest
 
 The Repository is located on: https://github.com/thedoggybrad/speedtest
