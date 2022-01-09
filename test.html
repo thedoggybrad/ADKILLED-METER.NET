@@ -1,33 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <link rel="shortcut icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
 <meta charset="UTF-8" />
-<script type="text/javascript" src="https://librespeed.org/speedtest.js"></script>
-<script type="text/javascript">
+<script src="https://librespeed.org/speedtest.js"></script>
+<script>
+/**
+ * @source: https://codeberg.org/librespeed/librespeed-frontend/src/branch/master/speedtest.js
+ *
+ * @licstart  The following is the entire license notice for the
+ * JavaScript code in this page.
+ *
+ * Copyright (C) Federico Dossena
+ *
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in this page.
+ *
+ */
+</script>
+<script>
 function I(i){return document.getElementById(i);}
 
-//LIST OF TEST SERVERS. See documentation for details if needed
-var SPEEDTEST_SERVERS=[
-	{	//this server doesn't actually exist, remove it
-		name:"Example Server 1", //user friendly name for the server
-		server:"//test1.mydomain.com/", //URL to the server. // at the beginning will be replaced with http:// or https:// automatically
-		dlURL:"backend/garbage.php",  //path to download test on this server (garbage.php or replacement)
-		ulURL:"backend/empty.php",  //path to upload test on this server (empty.php or replacement)
-		pingURL:"backend/empty.php",  //path to ping/jitter test on this server (empty.php or replacement)
-		getIpURL:"backend/getIP.php"  //path to getIP on this server (getIP.php or replacement)
-	},
-	{	//this server doesn't actually exist, remove it
-		name:"Example Server 2", //user friendly name for the server
-		server:"//test2.example.com/", //URL to the server. // at the beginning will be replaced with http:// or https:// automatically
-		dlURL:"garbage.php",  //path to download test on this server (garbage.php or replacement)
-		ulURL:"empty.php",  //path to upload test on this server (empty.php or replacement)
-		pingURL:"empty.php",  //path to ping/jitter test on this server (empty.php or replacement)
-		getIpURL:"getIP.php"  //path to getIP on this server (getIP.php or replacement)
-	}
-	//add other servers here, comma separated
-];
+var SPEEDTEST_SERVERS="backend-servers/servers.php"
 
 //INITIALIZE SPEEDTEST
 var s=new Speedtest(); //create speedtest object
@@ -53,6 +59,7 @@ function initServers(){
                 }
                 //show test UI
                 I("testWrapper").className="visible";
+                updateSponsor();
                 initUI();
             }else{ //no servers are available, the test cannot proceed
                 noServersAvailable();
@@ -190,8 +197,25 @@ function initUI(){
 	I("jitText").textContent="";
 	I("ip").textContent="";
 }
+function updateSponsor(){
+    var server=SPEEDTEST_SERVERS[I("server").value];
+    if(server==null) return;
+    if(server.sponsorName!=null){
+        I("sponsorArea").style.visibility="visible";
+        if(server.sponsorURL!=null){
+                var a=document.createElement("a");
+                a.href=server.sponsorURL;
+                a.innerText=server.sponsorName;
+                a.target="_blank";
+                I("sponsor").innerHTML="";
+                I("sponsor").appendChild(a);
+        }else{
+            I("sponsor").innerText=server.sponsorName
+        }
+    }else I("sponsorArea").style.visibility="hidden";
+}
 </script>
-<style type="text/css">
+<style>
 	html,body{
 		border:none; padding:0; margin:0;
 		background:#FFFFFF;
@@ -352,15 +376,8 @@ function initUI(){
         text-align:center;
         font-size:0.8em;
         color:#808080;
-        padding: 0 3em;
+        display:block;
 	}
-    div.closePrivacyPolicy {
-        width: 100%;
-        text-align: center;
-    }
-    div.closePrivacyPolicy a.privacy {
-        padding: 1em 3em;
-    }
 	@media all and (max-width:40em){
 		body{
 			font-size:0.8em;
@@ -393,18 +410,31 @@ function initUI(){
 		}
 	}
 </style>
-<title>LibreSpeed Example</title>
+<title>LibreSpeed - Speedtest</title>
+<meta name="description" content="Free and Open Source Speedtest. No Flash, No Java, No Websocket, No Bullshit." />
+<meta name="keywords" content="speed,test,speedtest,speed test,bandwidth speed test,internet speed test,broadband speed test,internet,network,connection,broadband,bandwidth,latency,ping,throughput,download,upload,connection,librespeed,libre speed,librespeedtest,librespeed test,libre speed test,HTML5 speedtest" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="LibreSpeed - Speedtest" />
+<meta property="og:description" content="Free and Open Source Speedtest. No Flash, No Java, No Websocket, No Bullshit." />
+<meta property="og:url" content="https://librespeed.org/" />
+<meta property="og:image" content="//librespeed.org/.logo/icon_huge.png" />
+<meta property="og:image:type" content="image/png" />
+
 </head>
 <body onload="initServers()">
-<h1>LibreSpeed Example</h1>
+<h1>LibreSpeed - Speedtest</h1>
+<p>Free and Open Source Speedtest. No Flash, No Java, No Websocket, No Bullshit.</p>
+<br/>
 <div id="loading" class="visible">
 	<p id="message"><span class="loadCircle"></span>Selecting a server...</p>
 </div>
 <div id="testWrapper" class="hidden">
-	<div id="startStopBtn" onclick="startStop()"></div><br/>
+	<div id="startStopBtn" onclick="startStop()"></div>
 	<a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''">Privacy</a>
 	<div id="serverArea">
-		Server: <select id="server" onchange="s.setSelectedServer(SPEEDTEST_SERVERS[this.value])"></select>
+		Server: <select id="server" onchange="s.setSelectedServer(SPEEDTEST_SERVERS[this.value]); updateSponsor();"></select>
+		<div id="sponsorArea">Sponsor: <span id="sponsor"></span></div>
 	</div>
 	<div id="test">
 		<div class="testGroup">
@@ -440,14 +470,14 @@ function initUI(){
 			<h3>Share results</h3>
 			<p>Test ID: <span id="testId"></span></p>
 			<input type="text" value="" id="resultsURL" readonly="readonly" onclick="this.select();this.focus();this.select();document.execCommand('copy');alert('Link copied')"/>
-			<img src="" id="resultsImg" />
+			<img src="" id="resultsImg" alt="Result image" />
 		</div>
 	</div>
-	<a href="https://github.com/librespeed/speedtest">Source code</a>
+	<a href="https://github.com/librespeed/speedtest">Source code</a> <!--TODO: self-host the download -->
 </div>
 <div id="privacyPolicy" style="display:none">
     <h2>Privacy Policy</h2>
-    <p>This HTML5 Speedtest server is configured with telemetry enabled.</p>
+    <p>This LibreSpeed server is configured with telemetry enabled.</p>
     <h4>What data we collect</h4>
     <p>
         At the end of the test, the following data is collected and stored:
@@ -455,7 +485,6 @@ function initUI(){
             <li>Test ID</li>
             <li>Time of testing</li>
             <li>Test results (download and upload speed, ping and jitter)</li>
-            <li>IP address</li>
             <li>ISP information</li>
             <li>Approximate location (inferred from IP address, not GPS)</li>
             <li>User agent and browser locale</li>
@@ -469,7 +498,7 @@ function initUI(){
             <li>Allow sharing of test results (sharable image for forums, etc.)</li>
             <li>To improve the service offered to you (for instance, to detect problems on our side)</li>
         </ul>
-        No personal information is disclosed to third parties.
+        No personal information is disclosed to third parties. IP addresses are not stored.
     </p>
     <h4>Your consent</h4>
     <p>
@@ -477,14 +506,11 @@ function initUI(){
     </p>
     <h4>Data removal</h4>
     <p>
-        If you want to have your information deleted, you need to provide either the ID of the test or your IP address. This is the only way to identify your data, without this information we won't be able to comply with your request.<br/><br/>
-        Contact this email address for all deletion requests: <a href="mailto:PUT@YOUR_EMAIL.HERE">TO BE FILLED BY DEVELOPER</a>.
+        If you want to have your information deleted, you need to provide the ID of the test(s) to delete. This is the only way to identify your data, without this information we won't be able to comply with your request.<br/><br/>
+        Contact this email address for all deletion requests: <a href="mailto:info@librespeed.org">info@librespeed.org</a>.
     </p>
     <br/><br/>
-    <div class="closePrivacyPolicy">
-        <a class="privacy" href="#" onclick="I('privacyPolicy').style.display='none'">Close</a>
-    </div>
-    <br/>
+    <a class="privacy" href="#" onclick="I('privacyPolicy').style.display='none'">Close</a><br/>
 </div>
 </body>
 </html>
