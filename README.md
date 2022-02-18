@@ -6,3 +6,4 @@ SpeedTest Website: https://thedoggybrad.github.io/speedtest
 Powered by https://meter.net
 
 This whole thing is opensource, however the Meter.net Embed is not opensource
+License: https://raw.githubusercontent.com/thedoggybrad/speedtest/main/LICENSE
