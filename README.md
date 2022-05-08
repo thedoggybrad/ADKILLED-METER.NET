@@ -1,5 +1,5 @@
-# The Doggy Brad Speed Test README
-The Newest Speedtest Website from the doggybrad.
+# ADKILLED-METER.NET 
+Formerly, thedoggybrad SpeedTest but now ADKILLED-METER.NET. Its objective now is to provide you a version of meter.net without any ads.
 
 SpeedTest Website: https://thedoggybrad.github.io/speedtest
 <br>
